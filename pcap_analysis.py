@@ -41,7 +41,8 @@ def main():
 
     LOCAL_IP = ['10.', '172', '192']
 
-    total_count = tcp_count = udp_count = arp_count = bytes_count = ip6_count = llc_count = other_count = 0
+    total_count = tcp_count = udp_count = arp_count =  bytes_count = 0
+    ip6_count = llc_count = igmp_count = icmp_count = other_count = 0
 
     tcp_ip_list = []
     udp_ip_list = []
@@ -74,6 +75,10 @@ def main():
             ip6_count += 1
         elif p_type == 'LLC':
             llc_count += 1
+        elif p_type == 'IGMP':
+            igmp_count += 1
+        elif p_type == 'ICMP':
+            icmp_count += 1
         else:
             other_count += 1
             print(p_type)
@@ -92,6 +97,8 @@ def main():
         f.write("bytes_count:" + str(bytes_count) + ":" + str(bytes_count/total_count) +"\n")
         f.write("ip6_count:" + str(ip6_count) + ":" + str(ip6_count/total_count) +"\n")
         f.write("llc_count:" + str(llc_count) + ":" + str(llc_count/total_count) +"\n")
+        f.write("igmp_count:" + str(igmp_count) + ":" + str(igmp_count/total_count) +"\n")
+        f.write("icmp_count:" + str(icmp_count) + ":" + str(icmp_count/total_count) +"\n")
         f.write("other_count:" + str(other_count) + ":" + str(other_count/total_count) +"\n")
 
     print("total_count:" + str(total_count) + ":" + str(total_count/total_count))
@@ -101,6 +108,8 @@ def main():
     print("bytes_count:" + str(bytes_count) + ":" + str(bytes_count/total_count)[:5])
     print("ip6_count:" + str(ip6_count) + ":" + str(ip6_count/total_count)[:5])
     print("llc_count:" + str(llc_count) + ":" + str(llc_count/total_count)[:5])
+    print("igmp_count:" + str(igmp_count) + ":" + str(igmp_count/total_count)[:5])
+    print("icmp_count:" + str(icmp_count) + ":" + str(icmp_count/total_count)[:5])
     print("other_count:" + str(other_count) + ":" + str(other_count/total_count))
 
     tcp_ip_dict = collections.Counter(tcp_ip_list).most_common()
