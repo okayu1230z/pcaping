@@ -41,7 +41,7 @@ def main():
 
     LOCAL_IP = ['10.', '172', '192']
 
-    total_count = tcp_count = udp_count = arp_count = other_count = 0
+    total_count = tcp_count = udp_count = arp_count = bytes_count = ip6_count = llc_count = other_count = 0
 
     tcp_ip_list = []
     udp_ip_list = []
@@ -68,6 +68,12 @@ def main():
                 print(eth.data.data.__class__.__name__)
         elif p_type == 'ARP':
             arp_count += 1
+        elif p_type == 'bytes':
+            bytes_count += 1
+        elif p_type == 'IP6':
+            ip6_count += 1
+        elif p_tyle == 'LLC':
+            llc_count += 1
         else:
             other_count += 1
             print(p_type)
@@ -83,12 +89,18 @@ def main():
         f.write("tcp_count:" + str(tcp_count) + ":" + str(tcp_count/total_count) +"\n")
         f.write("udp_count:" + str(udp_count) + ":" + str(udp_count/total_count) +"\n")
         f.write("arp_count:" + str(arp_count) + ":" + str(arp_count/total_count) +"\n")
+        f.write("bytes_count:" + str(bytes_count) + ":" + str(bytes_count/total_count) +"\n")
+        f.write("ip6_count:" + str(ip6_count) + ":" + str(ip6_count/total_count) +"\n")
+        f.write("llc_count:" + str(llc_count) + ":" + str(llc_count/total_count) +"\n")
         f.write("other_count:" + str(other_count) + ":" + str(other_count/total_count) +"\n")
 
     print("total_count:" + str(total_count) + ":" + str(total_count/total_count))
     print("tcp_count:" + str(tcp_count) + ":" + str(tcp_count/total_count)[:5])
     print("udp_count:" + str(udp_count) + ":" + str(udp_count/total_count)[:5])
     print("arp_count:" + str(arp_count) + ":" + str(arp_count/total_count)[:5])
+    print("bytes_count:" + str(bytes_count) + ":" + str(bytes_count/total_count)[:5])
+    print("ip6_count:" + str(ip6_count) + ":" + str(ip6_count/total_count)[:5])
+    print("llc_count:" + str(llc_count) + ":" + str(llc_count/total_count)[:5])
     print("other_count:" + str(other_count) + ":" + str(other_count/total_count))
 
     with open(output_log, mode='a') as f:
