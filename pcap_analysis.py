@@ -72,7 +72,7 @@ def main():
             bytes_count += 1
         elif p_type == 'IP6':
             ip6_count += 1
-        elif p_tyle == 'LLC':
+        elif p_type == 'LLC':
             llc_count += 1
         else:
             other_count += 1
@@ -102,13 +102,6 @@ def main():
     print("ip6_count:" + str(ip6_count) + ":" + str(ip6_count/total_count)[:5])
     print("llc_count:" + str(llc_count) + ":" + str(llc_count/total_count)[:5])
     print("other_count:" + str(other_count) + ":" + str(other_count/total_count))
-
-    with open(output_log, mode='a') as f:
-        f.write("total_count:" + str(total_count) + ":" + str(total_count/total_count)+"\n")
-        f.write("tcp_count:" + str(tcp_count) + ":" + str(tcp_count/total_count) +"\n")
-        f.write("udp_count:" + str(udp_count) + ":" + str(udp_count/total_count) +"\n")
-        f.write("arp_count:" + str(arp_count) + ":" + str(arp_count/total_count) +"\n")
-        f.write("other_count:" + str(other_count) + ":" + str(other_count/total_count) +"\n")
 
     tcp_ip_dict = collections.Counter(tcp_ip_list).most_common()
     udp_ip_dict = collections.Counter(udp_ip_list).most_common()
