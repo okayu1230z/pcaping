@@ -64,6 +64,8 @@ def main():
             elif (eth.data.data.__class__.__name__) == 'UDP':
                 udp_count += 1
                 udp_ip_list.append(ip_addr)
+            elif (eth.data.data.__class__.__name__) == 'ICMP':
+                icmp_count += 1
             else:
                 other_count += 1
                 print(eth.data.data.__class__.__name__)
@@ -77,8 +79,6 @@ def main():
             llc_count += 1
         elif p_type == 'IGMP':
             igmp_count += 1
-        elif p_type == 'ICMP':
-            icmp_count += 1
         else:
             other_count += 1
             print(p_type)
